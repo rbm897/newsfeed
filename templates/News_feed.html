@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <script>
+
+            function timedRefresh(timeoutPeriod) {
+	            setTimeout("document.form.submit();",timeoutPeriod);
+            }
+
+            window.onload = timedRefresh(5000);
+
+            function filter(){
+                var business = document.getElementById("business");
+                var entertainment = document.getElementById("entertainment");
+                var general = document.getElementById("general");
+                var health = document.getElementById("health");
+                var science = document.getElementById("science");
+                var sports = document.getElementById("sports");
+                var technology = document.getElementById("technology");
+                var p = "language=en&country=in&apiKey=888fa0f55948429f8ec40e15d69cf9a0";
+                if (business.checked == true){
+                    p = p + '&category=business'
+                }
+                if (entertainment.checked == true){
+                    p = p + '&category=entertainment'
+                }
+                if (general.checked == true){
+                    p = p +'&category=general'
+                }
+                if (health.checked == true){
+                    p = p+ '&category=health'
+                }
+                if (science.checked == true){
+                    p = p+ '&category=science'
+                }
+                if (sports.checked == true){
+                    p = p +'&category=sports'
+                }
+                if (technology.checked == true){
+                    p = p+ '&category=technology'
+                }
+                document.getElementById('category').value = p;
+                document.getElementById('refresh').value = "False";
+                return p;
+            }
+        </script>
+    </head>
+    <title>News Feed</title>
+    <body>
+        
+        <input type="checkbox" name="business" id="business" value="business" onclick="filter()" >Business<br>
+        <input type="checkbox" name="entertainment" id="entertainment" value="entertainment" onclick="filter()" >Entertainment<br>
+        <input type="checkbox" name="general" id="general" value="general" onclick="filter()" >General<br>
+        <input type="checkbox" name="health" id="health" value="health" onclick="filter()" >Health<br>
+        <input type="checkbox" name="science" id="science" value="science" onclick="filter()" >Science<br>
+        <input type="checkbox" name="sports" id="sports" value="sports" onclick="filter()" >Sports<br>
+        <input type="checkbox" name="technology" id="technology" value="technology" onclick="filter()" >Technology<br>
+        <form id="form" name="form" action = "/category" method = "POST">
+            <input type="hidden" name="refresh" id="refresh" value="True"/>
+            <input type="hidden" name="category" id="category"/>
+            <button formaction = "/category" >Submit</button>
+        </form>
+       
+        <br>
+        {% for item in name.get("articles") %}
+            <a href = {{ item.get("url") }}>{{ item.get("title") }}</a></br>
+        {% endfor %}
+    </body>
+</html>
+
