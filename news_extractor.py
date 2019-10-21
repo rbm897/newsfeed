@@ -34,7 +34,6 @@ def news_feed():
     if temp is None:
         temp['articles'] = []
     return render_template("News_feed.html",name = temp)
-    # return render_template("News_feed.html",name = r.json())
 
 
 @app.route('/category',methods = ['GET','POST'])
@@ -43,7 +42,7 @@ def category():
     global prevCategory
     
     category = request.form['category']
-    if category != '':
+    if category is None:
         prevCategory = category
     if request.form['refresh'] == 'True':
         api_url = 'https://newsapi.org/v2/top-headlines?' + prevCategory
