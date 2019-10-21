@@ -42,7 +42,7 @@ def category():
     global prevCategory
     
     category = request.form['category']
-    if category is None:
+    if category is not None:
         prevCategory = category
     if request.form['refresh'] == 'True':
         api_url = 'https://newsapi.org/v2/top-headlines?' + prevCategory
