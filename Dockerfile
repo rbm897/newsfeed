@@ -9,7 +9,10 @@ COPY ./templates /app/templates
 COPY ./ /app/
 WORKDIR /app
 
-RUN 'export FLASK_APP=/app/news_extractor.py'
+RUN 'export FLASK_APP="/app/news_extractor.py"'
+# RUN echo 'export FLASK_APP="/app/news_extractor.py"' >> ~/.bash_profile
+# RUN echo 'export FLASK_APP="/app/news_extractor.py"' >> ~/.bashrc
+# RUN /bin/bash -c "source ~/.bashrc"
 
 EXPOSE 5000
 CMD ["flask", "run", "--host", "0.0.0.0"]
