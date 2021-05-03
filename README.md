@@ -10,6 +10,6 @@ cd newsfeed
 
 sudo docker build -t newsfeed .
 
-sudo docker run -it -p 5000:5000 -e FLASK_APP=news_extractor.py newsfeed
+sudo docker run -it -p 5000:5000 newsfeed
 
 http://localhost:5000
