@@ -9,5 +9,7 @@ COPY ./templates /app/templates
 COPY ./ /app/
 WORKDIR /app
 
+export FLASK_APP=news_extractor.py
+
 EXPOSE 5000
 CMD ["flask", "run", "--host", "0.0.0.0"]
