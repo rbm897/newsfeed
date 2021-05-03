@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from timeloop import Timeloop
 from datetime import timedelta
+import os
 import requests
 app = Flask(__name__)
 
@@ -63,6 +64,6 @@ def category():
     return render_template("News_feed.html",name = temp)
 
 if __name__ == "__main__":
-    app.debug=True
-    app.run(host='0.0.0.0')
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug = True, host = '0.0.0.0', port = port)
 
