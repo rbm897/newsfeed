@@ -9,7 +9,7 @@ COPY ./templates /app/templates
 COPY ./ /app/
 WORKDIR /app
 
-RUN 'export FLASK_APP=news_extractor.py'
+RUN 'export FLASK_APP=/app/news_extractor.py'
 
 EXPOSE 5000
 CMD ["flask", "run", "--host", "0.0.0.0"]
